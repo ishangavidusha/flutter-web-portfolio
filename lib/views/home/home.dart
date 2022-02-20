@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:ishangavidusha/views/home/sections/projects_sec.dart';
+import 'package:ishangavidusha/views/home/sections/work_sec.dart';
 
 import '../../utils/commons.dart';
 import 'sections/about_sec.dart';
@@ -17,9 +21,13 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey _homeSecKey = GlobalKey();
   final GlobalKey _aboutSecKey = GlobalKey();
   final GlobalKey _experienceSecKey = GlobalKey();
+  final GlobalKey _workSecKey = GlobalKey();
+  final GlobalKey _projectsSecKey = GlobalKey();
   double homeContentHeight = 0;
   double aboutContentHeight = 0;
   double experienceContentHeight = 0;
+  double workContentHeight = 0;
+  double projectsContentHeight = 0;
 
   @override
   void initState() {
@@ -43,10 +51,14 @@ class _HomePageState extends State<HomePage> {
     Size homeSize = _homeSecKey.currentContext?.size ?? Size(0, homeContentHeight);
     Size aboutSize = _aboutSecKey.currentContext?.size ?? Size(0, aboutContentHeight);
     Size experienceSize = _experienceSecKey.currentContext?.size ?? Size(0, experienceContentHeight);
+    Size workSize = _workSecKey.currentContext?.size ?? Size(0, workContentHeight);
+    Size projectsSize = _projectsSecKey.currentContext?.size ?? Size(0, projectsContentHeight);
     setState(() {
       homeContentHeight = homeSize.height;
       aboutContentHeight = aboutSize.height;
       experienceContentHeight = experienceSize.height;
+      workContentHeight = workSize.height;
+      projectsContentHeight = projectsSize.height;
     });
   }
 
@@ -76,18 +88,28 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       SizedBox(
                         width: devWidth(context),
-                        height: homeContentHeight < devHeight(context) ? devHeight(context) : homeContentHeight,
+                        height: max(devHeight(context), homeContentHeight),
                         child: HomeSec(contentKey: _homeSecKey),
                       ),
                       SizedBox(
                         width: devWidth(context),
-                        height: aboutContentHeight < devHeight(context) ? devHeight(context) : aboutContentHeight,
+                        height: max(min(devHeight(context), aboutContentHeight + 160), aboutContentHeight),
                         child: AboutSec(contentKey: _aboutSecKey),
                       ),
                       SizedBox(
                         width: devWidth(context),
-                        height: experienceContentHeight < devHeight(context) ? devHeight(context) : experienceContentHeight,
+                        height: max(min(devHeight(context), experienceContentHeight + 160), experienceContentHeight),
                         child: ExperienceSec(contentKey: _experienceSecKey),
+                      ),
+                      SizedBox(
+                        width: devWidth(context),
+                        height: max(min(devHeight(context), workContentHeight + 160), workContentHeight),
+                        child: WorkSec(contentKey: _workSecKey),
+                      ),
+                      SizedBox(
+                        width: devWidth(context),
+                        height: max(min(devHeight(context), projectsContentHeight + 160), projectsContentHeight),
+                        child: ProjectsSec(contentKey: _projectsSecKey),
                       ),
                     ],
                   ),

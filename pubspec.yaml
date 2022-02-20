@@ -19,6 +19,7 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   ditredi: ^0.1.9
   animated_text_kit: ^4.2.1
+  collection: ^1.15.0
 
 dev_dependencies:
   flutter_test:

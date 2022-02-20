@@ -32,13 +32,13 @@ class _AppButtonState extends State<AppButton> {
           isHover = value;
         });
       },
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(4),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: BoxDecoration(
           color: isHover ? appTheme.primary.withAlpha(60) : appTheme.primary.withAlpha(20),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(
             color: appTheme.primary
           )

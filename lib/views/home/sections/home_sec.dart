@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -86,7 +88,7 @@ class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
         children: [
           HeadLine2("I build things for the ", isResponsive: true, fontSize: 58, textStyle: TextStyle(fontWeight: FontWeight.w900, color: appTheme.lightTwo)),
           SizedBox(
-            width: devWidth(context) * 0.3 > 300 ? 300 : devWidth(context) * 0.3 < 240 ? 240 : devWidth(context) * 0.3,
+            width: min(300, max(240, devWidth(context) * 0.3)),
             child: DefaultTextStyle(
               style: TextStyle(
                 fontSize: getTextSize(context, 58),
@@ -111,7 +113,7 @@ class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
       ),
       verticalSpace(value: 20),
       SizedBox(
-        width: devWidth(context) * 0.5 > 500 ? devWidth(context) * 0.5 : 500.0, 
+        width: max(devWidth(context) * 0.5, ScreenSize.mobile.maxWidth()), 
         child: Body1(
           "I'm a full-stack software developer who always like to learn new technologies and working as a freelancer at the same time. My most powerful tech stack is built around the Flutter framework and the Python and Java programming languages.",
           color: appTheme.lightOne,
