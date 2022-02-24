@@ -1,3 +1,5 @@
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' show document;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +36,18 @@ class _PortfolioState extends State<Portfolio> {
     _appService = AppService(sharedPreferences: widget.sharedPreferences);
     _appRouter = AppRouter(appService: _appService);
     _appTheme = AppTheme();
+    removeLoader();
     super.initState();
+  }
+
+  // Remove Preloader
+  void removeLoader() {
+    var element = document.getElementById("loader");
+    if (element != null) {
+      debugPrint("Removing Pre-Loader!");
+      debugPrint(element.id);
+      element.remove();
+    }
   }
 
   @override

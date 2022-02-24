@@ -1,16 +1,22 @@
-# ishangavidusha
+<h1 align="center">ishangavidusha.com</h1>
 
-A new Flutter project.
+<p align="center">
+    Build with <a href="https://flutter.dev" target="_blank">Flutter</a> and <a href="https://www.dartlang.org" target="_blank">Dart</a> Hosted with <a href="https://firebase.google.com" target="_blank">Firebase</a>
+</p>
 
-## Getting Started
+![](ishangavidusha.png)
 
-This project is a starting point for a Flutter application.
+This is Flutter's version of one of the famous personal websites created by Brittany Chiang. All the design credits should go to [Brittany Chiang](https://brittanychiang.com).
 
-A few resources to get you started if this is your first Flutter project:
+## 🎨 Color Reference
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Color          | Hex                                                                |
+| -------------- | ------------------------------------------------------------------ |
+| Navy           | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) `#0a192f` |
+| Light Navy     | ![#112240](https://via.placeholder.com/10/0a192f?text=+) `#112240` |
+| Lightest Navy  | ![#233554](https://via.placeholder.com/10/303C55?text=+) `#233554` |
+| Slate          | ![#8892b0](https://via.placeholder.com/10/8892b0?text=+) `#8892b0` |
+| Light Slate    | ![#a8b2d1](https://via.placeholder.com/10/a8b2d1?text=+) `#a8b2d1` |
+| Lightest Slate | ![#ccd6f6](https://via.placeholder.com/10/ccd6f6?text=+) `#ccd6f6` |
+| White          | ![#e6f1ff](https://via.placeholder.com/10/e6f1ff?text=+) `#e6f1ff` |
+| Green          | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |

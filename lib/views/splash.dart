@@ -19,7 +19,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   void initState() {
     _appService = Provider.of<AppService>(context, listen: false);
-    _entryAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000));
+    _entryAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     _entryAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _entryAnimationController, curve: Curves.easeIn));
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) => startAnimations());
     super.initState();
@@ -27,7 +27,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   void startAnimations() {
     _entryAnimationController.forward().then((value) async {
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 1000));
       _entryAnimationController.reverse().then((value) => onInit());
     });
   }
