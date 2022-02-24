@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../services/app.dart';
-import '../views/404.dart';
+import '../views/not_found.dart';
 import '../views/home/home.dart';
 import '../views/splash.dart';
 import 'pages.dart';

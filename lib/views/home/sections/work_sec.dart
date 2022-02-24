@@ -10,10 +10,8 @@ import '../../../utils/commons.dart';
 import '../../../utils/typography.dart';
 
 class WorkSec extends StatefulWidget {
-  final GlobalKey contentKey;
   const WorkSec({
     Key? key,
-    required this.contentKey,
   }) : super(key: key);
 
   @override
@@ -26,53 +24,50 @@ class _WorkSecState extends State<WorkSec> {
     ScreenSize screenSize = getScreenSize(context);
     AppTheme appTheme = Provider.of<AppTheme>(context);
     return Center(
-      child: ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-        child: SingleChildScrollView(
-          child: Padding(
-            key: widget.contentKey,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            child: Column(
-              crossAxisAlignment: screenSize == ScreenSize.desktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 84),
+        child: Column(
+          crossAxisAlignment: screenSize == ScreenSize.desktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    HeadLine6("03. ", color: appTheme.primary),
-                    horizontalSpace(),
-                    HeadLine5("Some Things I’ve Built", color: appTheme.lightThree, textStyle: const TextStyle(fontWeight: FontWeight.bold)),
-                    horizontalSpace(value: 20),
-                    Container(
-                      width: devWidth(context) * 0.15,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: appTheme.lightOne.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+                HeadLine6("03. ", color: appTheme.primary),
+                horizontalSpace(),
+                HeadLine5("Some Things I’ve Built", color: appTheme.lightThree, textStyle: const TextStyle(fontWeight: FontWeight.bold)),
+                horizontalSpace(value: 20),
+                Flexible(
+                  child: Container(
+                    constraints: BoxConstraints(maxWidth: devWidth(context) * 0.15, minWidth: 10),
+                    height: 1,
+                    decoration: BoxDecoration(
+                      color: appTheme.lightOne.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                  ],
-                ),
-                verticalSpace(value: 10),
-                WorkCard(
-                  imageUrl: "https://i.ibb.co/4dfk0Hm/beefoods.jpg",
-                  title: "BeeFoods Lanka",
-                  body: "A fully responsive and functional website with Flutter. Hosted with firebase and SMS Getaway API attached using Python (Cloud Function). CI/CD integrated with GCP Cloud Build.",
-                  tags: const ["Flutter","Firebase","GoRouter","SendLK"],
-                  external: Uri.https("beefoodslanka.com", ""),
-                ),
-                verticalSpace(),
-                WorkCard(
-                  imageUrl: "https://i.ibb.co/BwcCYV5/e9pass-app.jpg",
-                  title: "E9pay CS",
-                  body: "This is an internal service application of the client company that create using the Flutter framework. It has features like Generate PDF, Read QR Code, Google drive sync, etc...",
-                  tags: const ["Flutter","Google Login","PDF","QR Code", "Drive Sync"],
-                  github: Uri.https("github.com", "/ishangavidusha/E9pass-CS"),
-                  ltr: false,
+                  ),
                 ),
               ],
             ),
-          ),
+            verticalSpace(value: 10),
+            WorkCard(
+              imageUrl: "https://i.ibb.co/4dfk0Hm/beefoods.jpg",
+              title: "BeeFoods Lanka",
+              body: "A fully responsive and functional website with Flutter. Hosted with firebase and SMS Getaway API attached using Python (Cloud Function). CI/CD integrated with GCP Cloud Build.",
+              tags: const ["Flutter","Firebase","GoRouter","SendLK"],
+              external: Uri.https("beefoodslanka.com", ""),
+            ),
+            verticalSpace(),
+            WorkCard(
+              imageUrl: "https://i.ibb.co/BwcCYV5/e9pass-app.jpg",
+              title: "E9pay CS",
+              body: "This is an internal service application of the client company that create using the Flutter framework. It has features like Generate PDF, Read QR Code, Google drive sync, etc...",
+              tags: const ["Flutter","Google Login","PDF","QR Code", "Drive Sync"],
+              github: Uri.https("github.com", "/ishangavidusha/E9pass-CS"),
+              ltr: false,
+            ),
+          ],
         ),
       ),
     );
@@ -144,9 +139,9 @@ class _WorkCardState extends State<WorkCard> {
                         ),
                       );
                     },
-                    fit: BoxFit.fitWidth,
+                    fit: screenSize == ScreenSize.mobile ? BoxFit.cover : BoxFit.fitWidth,
                     colorBlendMode: (isHover && screenSize == ScreenSize.desktop) ? BlendMode.srcIn : BlendMode.srcATop,
-                    color: (isHover && screenSize == ScreenSize.desktop) ? null : screenSize == ScreenSize.desktop ? appTheme.darkOne.withOpacity(0.4) : appTheme.darkOne.withOpacity(0.9),
+                    color: (isHover && screenSize == ScreenSize.desktop) ? null : screenSize == ScreenSize.desktop ? appTheme.primary.withOpacity(0.4) : appTheme.darkOne.withOpacity(0.9),
                   ),
                 ),
               ),
@@ -173,7 +168,7 @@ class _WorkCardState extends State<WorkCard> {
                       Row(
                         mainAxisAlignment: !widget.ltr ? MainAxisAlignment.start : screenSize == ScreenSize.desktop ? MainAxisAlignment.end : MainAxisAlignment.start,
                         children: [
-                          HeadLine5(widget.title, color: appTheme.lightThree, textStyle: const TextStyle(fontWeight: FontWeight.bold),),
+                          HeadLine4(widget.title, color: appTheme.lightThree, textStyle: const TextStyle(fontWeight: FontWeight.bold),),
                         ],
                       ),
                       verticalSpace(value: 20),
@@ -181,7 +176,15 @@ class _WorkCardState extends State<WorkCard> {
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         decoration: BoxDecoration(
                           color: appTheme.darkTwo,
-                          borderRadius: BorderRadius.circular(4)
+                          borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 1,
+                              blurRadius: 24,
+                              offset: const Offset(0, 6)
+                            ),
+                          ]
                         ),
                         child: Row(
                           mainAxisAlignment: !widget.ltr ? MainAxisAlignment.start : screenSize == ScreenSize.desktop ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -191,7 +194,6 @@ class _WorkCardState extends State<WorkCard> {
                                 widget.body,
                                 color: appTheme.lightTwo,
                                 textOverflow: TextOverflow.ellipsis,
-                                fontSize: 12,
                                 maxLines: 5,
                                 textAlign: !widget.ltr ? TextAlign.start : screenSize == ScreenSize.desktop ? TextAlign.end : TextAlign.start,
                               ),

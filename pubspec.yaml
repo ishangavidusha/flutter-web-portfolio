@@ -14,10 +14,8 @@ dependencies:
   url_launcher: ^6.0.20
   shared_preferences: ^2.0.13
   intl: ^0.17.0
-  dio: ^4.0.4
   google_fonts: ^2.3.1
   font_awesome_flutter: ^9.2.0
-  ditredi: ^0.1.9
   animated_text_kit: ^4.2.1
   collection: ^1.15.0
 

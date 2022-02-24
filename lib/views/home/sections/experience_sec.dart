@@ -9,10 +9,8 @@ import '../../../utils/commons.dart';
 import '../../../utils/typography.dart';
 
 class ExperienceSec extends StatefulWidget {
-  final GlobalKey contentKey;
   const ExperienceSec({
     Key? key,
-    required this.contentKey,
   }) : super(key: key);
 
   @override
@@ -70,106 +68,103 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
     ScreenSize screenSize = getScreenSize(context);
     AppTheme appTheme = Provider.of<AppTheme>(context);
     return Center(
-      child: ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            key: widget.contentKey,
-            child: Column(
-              crossAxisAlignment: screenSize == ScreenSize.desktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 84),
+        child: Column(
+          crossAxisAlignment: screenSize == ScreenSize.desktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    HeadLine6("02. ", color: appTheme.primary),
-                    horizontalSpace(),
-                    HeadLine5("Experience", color: appTheme.lightThree, textStyle: const TextStyle(fontWeight: FontWeight.bold)),
-                    horizontalSpace(value: 20),
-                    Container(
-                      width: devWidth(context) * 0.15,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: appTheme.lightOne.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+                HeadLine6("02. ", color: appTheme.primary),
+                horizontalSpace(),
+                HeadLine5("Experience", color: appTheme.lightThree, textStyle: const TextStyle(fontWeight: FontWeight.bold)),
+                horizontalSpace(value: 20),
+                Flexible(
+                  child: Container(
+                    constraints: BoxConstraints(maxWidth: devWidth(context) * 0.15, minWidth: 10),
+                    height: 1,
+                    decoration: BoxDecoration(
+                      color: appTheme.lightOne.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                  ],
-                ),
-                verticalSpace(value: 30),
-                Flex(
-                  direction: screenSize == ScreenSize.desktop ? Axis.horizontal : Axis.vertical,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SingleChildScrollView(
-                      scrollDirection: screenSize == ScreenSize.desktop ? Axis.vertical : Axis.horizontal,
-                      controller: _tabScrollController,
-                      child: CustomPaint(
-                        painter: TabIndicatorPainter(
-                          buttonSize: buttonSize,
-                          offset: _tabAnimation.value,
-                          color: appTheme.primary,
-                          direction: screenSize == ScreenSize.desktop ? Axis.vertical : Axis.horizontal,
-                        ),
-                        child: Flex(
-                          direction: screenSize == ScreenSize.desktop ? Axis.vertical : Axis.horizontal,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                goToTab(0);
-                              },
-                              child: SizedBox(
-                                width: buttonSize.width,
-                                height: buttonSize.height,
-                                child: Container(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  alignment: Alignment.centerLeft,
-                                  child: Caption("Freelance", color: selectedIndex == 0 ? appTheme.primary : appTheme.lightOne),
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                goToTab(1);
-                              },
-                              child: SizedBox(
-                                width: buttonSize.width,
-                                height: buttonSize.height,
-                                child: Container(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  alignment: Alignment.centerLeft,
-                                  child: Caption("E9pay", color: selectedIndex == 1 ? appTheme.primary : appTheme.lightOne),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Stack(
-                      children: [
-                        Positioned(
-                          child: freelanceBody(screenSize, appTheme, context),
-                        ),
-                        Positioned(
-                          child: e9payBody(screenSize, appTheme, context),
-                        ),
-                      ].mapIndexed((index, element) {
-                        if (index == selectedIndex) {
-                          return element;
-                        } else {
-                          return const SizedBox();
-                        }
-                      }).toList(),
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),
-          ),
+            verticalSpace(value: 30),
+            Flex(
+              direction: screenSize == ScreenSize.desktop ? Axis.horizontal : Axis.vertical,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: screenSize == ScreenSize.desktop ? Axis.vertical : Axis.horizontal,
+                  controller: _tabScrollController,
+                  child: CustomPaint(
+                    painter: TabIndicatorPainter(
+                      buttonSize: buttonSize,
+                      offset: _tabAnimation.value,
+                      color: appTheme.primary,
+                      direction: screenSize == ScreenSize.desktop ? Axis.vertical : Axis.horizontal,
+                    ),
+                    child: Flex(
+                      direction: screenSize == ScreenSize.desktop ? Axis.vertical : Axis.horizontal,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            goToTab(0);
+                          },
+                          child: SizedBox(
+                            width: buttonSize.width,
+                            height: buttonSize.height,
+                            child: Container(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              alignment: Alignment.centerLeft,
+                              child: Caption("Freelance", color: selectedIndex == 0 ? appTheme.primary : appTheme.lightOne),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            goToTab(1);
+                          },
+                          child: SizedBox(
+                            width: buttonSize.width,
+                            height: buttonSize.height,
+                            child: Container(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              alignment: Alignment.centerLeft,
+                              child: Caption("E9pay", color: selectedIndex == 1 ? appTheme.primary : appTheme.lightOne),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Stack(
+                  children: [
+                    Positioned(
+                      child: freelanceBody(screenSize, appTheme, context),
+                    ),
+                    Positioned(
+                      child: e9payBody(screenSize, appTheme, context),
+                    ),
+                  ].mapIndexed((index, element) {
+                    if (index == selectedIndex) {
+                      return element;
+                    } else {
+                      return const SizedBox();
+                    }
+                  }).toList(),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -186,7 +181,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
               text: "Full-stack developer ",
               style: TextStyle(
                 color: appTheme.lightOne,
-                fontFamily: GoogleFonts.robotoSlab().fontFamily,
+                fontFamily: GoogleFonts.workSans().fontFamily,
                 fontSize: 16,
               ),
               children: [
@@ -276,7 +271,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
               text: "Developer ",
               style: TextStyle(
                 color: appTheme.lightOne,
-                fontFamily: GoogleFonts.robotoSlab().fontFamily,
+                fontFamily: GoogleFonts.workSans().fontFamily,
                 fontSize: 16,
               ),
               children: [
@@ -292,7 +287,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
         ),
         Padding(
           padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0) : const EdgeInsets.only(top: 8.0),
-          child: Caption("January 2022 - April 2021", color: appTheme.lightOne),
+          child: Caption("January 2020 - April 2021", color: appTheme.lightOne),
         ),
         Padding(
           padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0) : const EdgeInsets.only(top: 12.0),
@@ -346,7 +341,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
                   child: Icon(FontAwesomeIcons.caretRight, color: appTheme.primary, size: 12),
                 ),
                 horizontalSpace(),
-                Flexible(child: SubTitle2("Worked closely with designers and the management team to develop, document, and implement new features.", color: appTheme.lightOne, textOverflow: TextOverflow.ellipsis, maxLines: 5)),
+                Flexible(child: SubTitle2("Collaborated with other developers to identify and alleviate software errors and inefficiencies.", color: appTheme.lightOne, textOverflow: TextOverflow.ellipsis, maxLines: 5)),
               ],
             ),
           ),

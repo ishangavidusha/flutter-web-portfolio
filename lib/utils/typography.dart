@@ -36,7 +36,6 @@ class HeadLine1 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.headline1?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.2,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -93,7 +92,6 @@ class HeadLine2 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.headline2?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.2,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -150,7 +148,6 @@ class HeadLine3 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.headline3?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.2,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -207,7 +204,6 @@ class HeadLine4 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.headline4?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.2,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -264,7 +260,6 @@ class HeadLine5 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.headline5?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.2,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -321,7 +316,6 @@ class HeadLine6 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.headline6?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.2,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -378,7 +372,6 @@ class SubTitle1 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.subtitle1?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.2,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -435,7 +428,6 @@ class SubTitle2 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.subtitle2?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.1,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -492,7 +484,6 @@ class Body1 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.bodyMedium?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.1,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -549,7 +540,6 @@ class Body2 extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.bodyText2?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.1,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(
@@ -606,7 +596,6 @@ class Caption extends StatelessWidget {
       data,
       style: Theme.of(context).textTheme.caption?.merge(textStyle).copyWith(
         color: color,
-        letterSpacing: 1.1,
         fontSize: isResponsive ? getTextSize(context, fontSize) : fontSize,
         shadows: [
           BoxShadow(

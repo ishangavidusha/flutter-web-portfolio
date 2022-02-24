@@ -17,9 +17,9 @@ class AppTheme with ChangeNotifier {
     useMaterial3: true,
     brightness: Brightness.dark,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: GoogleFonts.robotoSlab().fontFamily,
+    fontFamily: GoogleFonts.workSans().fontFamily,
     colorScheme: _appColorScheme,
-    textTheme: GoogleFonts.robotoSlabTextTheme(Typography.whiteRedmond),
+    textTheme: GoogleFonts.workSansTextTheme(Typography.whiteRedmond),
     backgroundColor: const Color(0xFF0a192f),
     scaffoldBackgroundColor: const Color(0xFF0a192f),
     inputDecorationTheme: const InputDecorationTheme(
@@ -30,7 +30,7 @@ class AppTheme with ChangeNotifier {
       style: ElevatedButton.styleFrom(
         shape: const StadiumBorder(),
         minimumSize: const Size(140, 40),
-        textStyle: GoogleFonts.robotoSlab(
+        textStyle: GoogleFonts.workSans(
           textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
@@ -42,7 +42,7 @@ class AppTheme with ChangeNotifier {
       style: OutlinedButton.styleFrom(
         shape: const StadiumBorder(),
         minimumSize: const Size(140, 40),
-        textStyle: GoogleFonts.robotoSlab(
+        textStyle: GoogleFonts.workSans(
           textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,

@@ -23,34 +23,10 @@ class HomeSec extends StatefulWidget {
 }
 
 class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
-  late Animation<double> _animationOpacity;
-  late Animation<Offset> _animationOffset;
-  late AnimationController _animationController;
   Uri blogUri = Uri.https("blog.ishangavidusha.com", "");
 
   @override
-  void initState() {
-    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000));
-    _animationOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeOutCirc));
-    _animationOffset = Tween<Offset>(begin: const Offset(0, 2), end: const Offset(0, 0)).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeOutCirc));
-    startAnimation();
-    super.initState();
-  }
-
-  void startAnimation() async {
-    await Future.delayed(const Duration(milliseconds: 500));
-    _animationController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    ScreenSize screenSize = getScreenSize(context);
     AppTheme appTheme = Provider.of<AppTheme>(context);
     return Center(
       child: ScrollConfiguration(
@@ -63,13 +39,7 @@ class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: body(appTheme).map((e) => FadeTransition(
-                opacity: _animationOpacity,
-                child: SlideTransition(
-                  position: _animationOffset,
-                  child: e,
-                ),
-              )).toList(),
+              children: body(appTheme).map((e) => e).toList(),
             ),
           ),
         ),
@@ -80,6 +50,7 @@ class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
   List<Widget> body(AppTheme appTheme) {
     return [
       SubTitle1("Hi, my name is", color: appTheme.primary),
+      verticalSpace(),
       HeadLine1("Ishanga Vidusha.", isResponsive: true, textStyle: TextStyle(fontWeight: FontWeight.w900, color: appTheme.lightThree)),
       Flex(
         direction: getScreenSize(context) == ScreenSize.desktop ? Axis.horizontal : Axis.vertical,
@@ -94,7 +65,7 @@ class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
                 fontSize: getTextSize(context, 58),
                 fontWeight: FontWeight.w900,
                 color: appTheme.lightTwo,
-                fontFamily: GoogleFonts.robotoSlab().fontFamily,
+                fontFamily: GoogleFonts.workSans().fontFamily,
                 letterSpacing: 1.2
               ),
               child: AnimatedTextKit(
