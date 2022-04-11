@@ -71,13 +71,13 @@ class _AboutSecState extends State<AboutSec> {
                               text: "\n\n"
                             ),
                             TextSpan(
-                              text: "I was a 4th-year Information Technology undergraduate student of the Hankuk University in South Korea.",
+                              text: "I acquired my undergraduate in Information Technology and Communication Engineering at the Hankuk University of South Korea.",
                               style: TextStyle(
                                 color: appTheme.primary
                               )
                             ),
                             const TextSpan(
-                              text: " But currently, I'm living in Sri Lanka because in 2021 I decided to leave the university because of COVID 19 pandemic situation and some personal issues I face during that period.",
+                              text: " I'm currently living in Sri Lanka, In 2021 I decided to leave South Korea because of COVID 19 pandemic situation, My intention was to develop my career path in my country and be a part of the local developer community in my comfort zone.",
                             ),
                             const TextSpan(
                               text: "\n\n"

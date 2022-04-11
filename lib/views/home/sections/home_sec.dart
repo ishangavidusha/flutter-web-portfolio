@@ -72,9 +72,9 @@ class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
                 repeatForever: true,
                 pause: const Duration(seconds: 2),
                 animatedTexts: [
-                  TypewriterAnimatedText("web.", speed: const Duration(milliseconds: 100)),
                   TypewriterAnimatedText("mobile.", speed: const Duration(milliseconds: 100)),
                   TypewriterAnimatedText("desktop.", speed: const Duration(milliseconds: 100)),
+                  TypewriterAnimatedText("web.", speed: const Duration(milliseconds: 100)),
                   TypewriterAnimatedText("backend.", speed: const Duration(milliseconds: 100)),
                 ],
               ),
@@ -86,7 +86,7 @@ class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
       SizedBox(
         width: max(devWidth(context) * 0.5, ScreenSize.mobile.maxWidth()), 
         child: Body1(
-          "I'm a full-stack software developer who always like to learn new technologies and working as a freelancer at the same time. My most powerful tech stack is built around the Flutter framework and the Python and Java programming languages.",
+          "I'm a full-stack software developer who always like to learn new technologies. I'm currently working as a Flutter Engineer. My most powerful tech stack is built around the Flutter Framework & Python, Java programming languages.",
           color: appTheme.lightOne,
         ),
       ),

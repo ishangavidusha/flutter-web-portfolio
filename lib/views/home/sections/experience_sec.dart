@@ -124,7 +124,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
                             child: Container(
                               padding: const EdgeInsets.only(left: 20.0),
                               alignment: Alignment.centerLeft,
-                              child: Caption("Freelance", color: selectedIndex == 0 ? appTheme.primary : appTheme.lightOne),
+                              child: Caption("Elegant Media", color: selectedIndex == 0 ? appTheme.primary : appTheme.lightOne),
                             ),
                           ),
                         ),
@@ -138,7 +138,21 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
                             child: Container(
                               padding: const EdgeInsets.only(left: 20.0),
                               alignment: Alignment.centerLeft,
-                              child: Caption("E9pay", color: selectedIndex == 1 ? appTheme.primary : appTheme.lightOne),
+                              child: Caption("Freelance", color: selectedIndex == 1 ? appTheme.primary : appTheme.lightOne),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            goToTab(2);
+                          },
+                          child: SizedBox(
+                            width: buttonSize.width,
+                            height: buttonSize.height,
+                            child: Container(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              alignment: Alignment.centerLeft,
+                              child: Caption("E9pay", color: selectedIndex == 2 ? appTheme.primary : appTheme.lightOne),
                             ),
                           ),
                         ),
@@ -148,6 +162,9 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
                 ),
                 Stack(
                   children: [
+                    Positioned(
+                      child: eMediaBody(screenSize, appTheme, context),
+                    ),
                     Positioned(
                       child: freelanceBody(screenSize, appTheme, context),
                     ),
@@ -170,7 +187,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
     );
   }
 
-  Widget freelanceBody(ScreenSize screenSize, AppTheme appTheme, BuildContext context) {
+  Widget eMediaBody(ScreenSize screenSize, AppTheme appTheme, BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -178,7 +195,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
           padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0) : const EdgeInsets.only(top: 20),
           child: RichText(
             text: TextSpan(
-              text: "Full-stack developer ",
+              text: "Flutter Software Engineer ",
               style: TextStyle(
                 color: appTheme.lightOne,
                 fontFamily: GoogleFonts.workSans().fontFamily,
@@ -186,7 +203,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
               ),
               children: [
                 TextSpan(
-                  text: "@ -",
+                  text: "@ Elegant Media Sri Lanka",
                   style: TextStyle(
                     color: appTheme.primary
                   )
@@ -197,7 +214,7 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
         ),
         Padding(
           padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0) : const EdgeInsets.only(top: 8.0),
-          child: Caption("April 2021 - Present", color: appTheme.lightOne),
+          child: Caption("March 2022 - Present", color: appTheme.lightOne),
         ),
         Padding(
           padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0) : const EdgeInsets.only(top: 12.0),
@@ -232,7 +249,97 @@ class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProvider
                   child: Icon(FontAwesomeIcons.caretRight, color: appTheme.primary, size: 12),
                 ),
                 horizontalSpace(),
-                Flexible(child: SubTitle2("Work with a variety of different languages, platforms, frameworks, and management systems such as Flutter, Android, Kotlin, FastAPI, Python, Flask, Git and ClickUp.", color: appTheme.lightOne, textOverflow: TextOverflow.ellipsis, maxLines: 5)),
+                Flexible(child: SubTitle2("Work with a variety of different languages, platforms, frameworks, and technologies such as Flutter, Bitbucket, Git and Trello.", color: appTheme.lightOne, textOverflow: TextOverflow.ellipsis, maxLines: 5)),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0) : const EdgeInsets.only(top: 12.0),
+          child: SizedBox(
+            width: screenSize == ScreenSize.desktop ? 600 : devWidth(context) * 0.9,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                  child: Icon(FontAwesomeIcons.caretRight, color: appTheme.primary, size: 12),
+                ),
+                horizontalSpace(),
+                Flexible(child: SubTitle2("Collaborated with other developers to identify and alleviate software errors and inefficiencies. \n", color: appTheme.lightOne, textOverflow: TextOverflow.ellipsis, maxLines: 5)),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget freelanceBody(ScreenSize screenSize, AppTheme appTheme, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0) : const EdgeInsets.only(top: 20),
+          child: RichText(
+            text: TextSpan(
+              text: "Full-stack developer ",
+              style: TextStyle(
+                color: appTheme.lightOne,
+                fontFamily: GoogleFonts.workSans().fontFamily,
+                fontSize: 16,
+              ),
+              children: [
+                TextSpan(
+                  text: "@ -",
+                  style: TextStyle(
+                    color: appTheme.primary
+                  )
+                ),
+              ]
+            ),
+          ),
+        ),
+        Padding(
+          padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0) : const EdgeInsets.only(top: 8.0),
+          child: Caption("April 2021 - March 2022", color: appTheme.lightOne),
+        ),
+        Padding(
+          padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0) : const EdgeInsets.only(top: 12.0),
+          child: SizedBox(
+            width: screenSize == ScreenSize.desktop ? 600 : devWidth(context) * 0.9,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                  child: Icon(FontAwesomeIcons.caretRight, color: appTheme.primary, size: 12),
+                ),
+                horizontalSpace(),
+                Flexible(child: SubTitle2("Write modern, performant, maintainable code for a diverse array of client and internal projects.", color: appTheme.lightOne, textOverflow: TextOverflow.ellipsis, maxLines: 5)),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: screenSize == ScreenSize.desktop ? const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0) : const EdgeInsets.only(top: 12.0),
+          child: SizedBox(
+            width: screenSize == ScreenSize.desktop ? 600 : devWidth(context) * 0.9,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                  child: Icon(FontAwesomeIcons.caretRight, color: appTheme.primary, size: 12),
+                ),
+                horizontalSpace(),
+                Flexible(child: SubTitle2("Work with a variety of different languages, platforms, frameworks, and technologies such as Flutter, Android, Kotlin, FastAPI, Python, Flask, Git and ClickUp.", color: appTheme.lightOne, textOverflow: TextOverflow.ellipsis, maxLines: 5)),
               ],
             ),
           ),

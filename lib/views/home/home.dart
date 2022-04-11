@@ -41,9 +41,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     _scrollController = ScrollController();
-    _homeSecAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000));
+    _homeSecAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
     _buttonAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
-    _menuBarAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    _menuBarAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
     _homeSecAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _homeSecAnimationController, curve: Curves.easeOutCirc));
     _menuBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _menuBarAnimationController, curve: Curves.easeOutCirc));
     WidgetsBinding.instance?.addPostFrameCallback((_) => getContentHeight());
@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         child: FadeTransition(
                           opacity: _homeSecAnimation,
                           child: SlideTransition(
-                            position: _homeSecAnimation.drive(Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero)),
+                            position: _homeSecAnimation.drive(Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero)),
                             child: HomeSec(contentKey: homeContentKey),
                           ),
                         ),
@@ -247,7 +247,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 top: 0,
                 width: devWidth(context),
                 child: SlideTransition(
-                  position: _menuBarAnimation.drive(Tween<Offset>(begin: const Offset(0, -2), end: Offset.zero)),
+                  position: _menuBarAnimation.drive(Tween<Offset>(begin: const Offset(0, -2.0), end: Offset.zero)),
                   child: FadeTransition(
                     opacity: _menuBarAnimation,
                     child: MenuBar(

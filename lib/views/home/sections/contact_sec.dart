@@ -35,7 +35,7 @@ class _ContactSecState extends State<ContactSec> {
             SizedBox(
               width: 450,
               child: SubTitle1(
-                "I’m interested in freelance opportunities – especially ambitious or large projects, my inbox is always open. Whether you have a question, request or just want to say hi, I’ll try my best to get back to you!",
+                "Although I’m not currently looking for any new opportunities, my inbox is always open. Whether you have a question, request or just want to say hi, I’ll try my best to get back to you!",
                 color: appTheme.lightTwo,
                 textAlign: TextAlign.center,
               ),

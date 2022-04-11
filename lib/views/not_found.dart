@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ishangavidusha/utils/commons.dart';
 import 'package:ishangavidusha/utils/typography.dart';
 
 class NotFoundPage extends StatelessWidget {
@@ -16,8 +17,11 @@ class NotFoundPage extends StatelessWidget {
         children: [
           Positioned.fill(child: Center(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                SubTitle1(state.error.toString()),
+                const HeadLine6("Not Found!"),
+                verticalSpace(),
+                Caption(state.error.toString()),
               ],
             ),
           ))
