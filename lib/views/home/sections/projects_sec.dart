@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../services/theme.dart';
 import '../../../utils/commons.dart';
@@ -15,10 +15,10 @@ class ProjectsSec extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ProjectsSecState createState() => _ProjectsSecState();
+  ProjectsSecState createState() => ProjectsSecState();
 }
 
-class _ProjectsSecState extends State<ProjectsSec> {
+class ProjectsSecState extends State<ProjectsSec> {
   List<ProjectInfo> projectInfo = [
     ProjectInfo(
       title: "Python SDK for Send.lk SMS Gateway",
@@ -96,7 +96,7 @@ class _ProjectsSecState extends State<ProjectsSec> {
                       tags: projectInfo[index].tags,
                       onTap: () {
                         if (projectInfo[index].url != null) {
-                          launch(projectInfo[index].url.toString());
+                          launchUrlString(projectInfo[index].url.toString());
                         }
                       },
                     )
@@ -202,7 +202,7 @@ class _ProjectTileState extends State<ProjectTile> with SingleTickerProviderStat
                         children: [
                           Icon(FontAwesomeIcons.folder, size: 36, color: appTheme.primary),
                           IconButton(
-                            icon: const Icon(FontAwesomeIcons.externalLinkAlt, size: 18),
+                            icon: const Icon(FontAwesomeIcons.upRightFromSquare, size: 18),
                             splashRadius: 20,
                             color: appTheme.lightTwo,
                             padding: EdgeInsets.zero,

@@ -14,10 +14,10 @@ class ExperienceSec extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ExperienceSecState createState() => _ExperienceSecState();
+  ExperienceSecState createState() => ExperienceSecState();
 }
 
-class _ExperienceSecState extends State<ExperienceSec> with SingleTickerProviderStateMixin {
+class ExperienceSecState extends State<ExperienceSec> with SingleTickerProviderStateMixin {
   int selectedIndex = 0;
   Size buttonSize = const Size(120, 40);
   late AnimationController _tabAnimationController;

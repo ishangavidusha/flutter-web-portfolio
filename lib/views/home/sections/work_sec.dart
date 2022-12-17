@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../services/theme.dart';
 import '../../../utils/commons.dart';
@@ -15,10 +15,10 @@ class WorkSec extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _WorkSecState createState() => _WorkSecState();
+  WorkSecState createState() => WorkSecState();
 }
 
-class _WorkSecState extends State<WorkSec> {
+class WorkSecState extends State<WorkSec> {
   @override
   Widget build(BuildContext context) {
     ScreenSize screenSize = getScreenSize(context);
@@ -135,7 +135,7 @@ class _WorkCardState extends State<WorkCard> {
                           width: 120,
                           height: 120,
                           color: appTheme.darkTwo.withOpacity(0.5),
-                          child: Icon(FontAwesomeIcons.stopCircle, color: appTheme.red),
+                          child: Icon(FontAwesomeIcons.circleStop, color: appTheme.red),
                         ),
                       );
                     },
@@ -218,20 +218,20 @@ class _WorkCardState extends State<WorkCard> {
                             color: appTheme.lightTwo,
                             padding: EdgeInsets.zero,
                             onPressed: () async {
-                              if(await canLaunch(widget.github.toString())) {
-                                launch(widget.github.toString());
+                              if(await canLaunchUrlString(widget.github.toString())) {
+                                launchUrlString(widget.github.toString());
                               }
                             },
                           ),
                           horizontalSpace(),
                           if (widget.external != null) IconButton(
-                            icon: const Icon(FontAwesomeIcons.externalLinkSquareAlt, size: 16),
+                            icon: const Icon(FontAwesomeIcons.squareUpRight, size: 16),
                             splashRadius: 18,
                             color: appTheme.lightTwo,
                             padding: EdgeInsets.zero,
                             onPressed: () async {
-                              if(await canLaunch(widget.external.toString())) {
-                                launch(widget.external.toString());
+                              if(await canLaunchUrlString(widget.external.toString())) {
+                                launchUrlString(widget.external.toString());
                               }
                             },
                           ),

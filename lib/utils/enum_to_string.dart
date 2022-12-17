@@ -19,8 +19,8 @@ class EnumToString {
     assert(enumItem != null);
     assert(_isEnumItem(enumItem),
         '$enumItem of type ${enumItem.runtimeType.toString()} is not an enum item');
-    final _tmp = enumItem.toString().split('.')[1];
-    return !camelCase ? _tmp : camelCaseToWords(_tmp);
+    final tmp = enumItem.toString().split('.')[1];
+    return !camelCase ? tmp : camelCaseToWords(tmp);
   }
 
   @Deprecated(
@@ -75,7 +75,7 @@ class EnumToString {
   /// Bulk convert enum values to a list
   ///
   static List<String> toList<T>(List<T> enumValues, {bool camelCase = false}) {
-    final _enumList = enumValues
+    final enumList = enumValues
         .map((t) => !camelCase
             ? EnumToString.convertToString(t)
             : EnumToString.convertToString(t, camelCase: true))
@@ -85,7 +85,7 @@ class EnumToString {
     // non-nullable one, but this will do until I find out how. Happy if
     // someone want to do a PR in the meantime to correct this.
     var output = <String>[];
-    for (var value in _enumList) {
+    for (var value in enumList) {
       output.add(value);
     }
     return output;
@@ -125,29 +125,7 @@ const String GENERAL_PUNCTUATION = r'\u2000-\u206F';
 const String WHITESPACE =
     r'\t-\r \x85\xA0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000';
 
-const String WORD = '(?:[' +
-    UPPERCASE +
-    '][' +
-    DIACRITICAL_MARK +
-    ']*)?(?:[' +
-    LOWERCASE +
-    '][' +
-    DIACRITICAL_MARK +
-    ']*)+|(?:[' +
-    UPPERCASE +
-    '][' +
-    DIACRITICAL_MARK +
-    ']*)+(?![' +
-    LOWERCASE +
-    '])|[' +
-    DIGIT +
-    ']+|[' +
-    DINGBAT_BLOCK +
-    ']|[^' +
-    NON_CHAR +
-    GENERAL_PUNCTUATION +
-    WHITESPACE +
-    ']+';
+const String WORD = '(?:[$UPPERCASE][$DIACRITICAL_MARK]*)?(?:[$LOWERCASE][$DIACRITICAL_MARK]*)+|(?:[$UPPERCASE][$DIACRITICAL_MARK]*)+(?![$LOWERCASE])|[$DIGIT]+|[$DINGBAT_BLOCK]|[^$NON_CHAR$GENERAL_PUNCTUATION$WHITESPACE]+';
 
 String camelCaseToWords(String subject,
     [Pattern customPattern = defaultPattern]) {

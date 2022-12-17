@@ -4,7 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../services/theme.dart';
 import '../../../utils/commons.dart';
@@ -19,10 +19,10 @@ class HomeSec extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _HomeSecState createState() => _HomeSecState();
+  HomeSecState createState() => HomeSecState();
 }
 
-class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
+class HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
   Uri blogUri = Uri.https("blog.ishangavidusha.com", "");
 
   @override
@@ -94,8 +94,8 @@ class _HomeSecState extends State<HomeSec> with TickerProviderStateMixin {
       AppButton(
         text: "Check out my blog!",
         onPressed: () async {
-          if (await canLaunch(blogUri.toString())) {
-            launch(blogUri.toString());
+          if (await canLaunchUrlString(blogUri.toString())) {
+            launchUrlString(blogUri.toString());
           }
         },
       ),

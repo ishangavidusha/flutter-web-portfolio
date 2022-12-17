@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ishangavidusha/utils/widgets/buttons.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../services/theme.dart';
 import '../../../utils/commons.dart';
@@ -14,10 +14,10 @@ class ContactSec extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ContactSecState createState() => _ContactSecState();
+  ContactSecState createState() => ContactSecState();
 }
 
-class _ContactSecState extends State<ContactSec> {
+class ContactSecState extends State<ContactSec> {
   @override
   Widget build(BuildContext context) {
     AppTheme appTheme = Provider.of<AppTheme>(context);
@@ -44,7 +44,7 @@ class _ContactSecState extends State<ContactSec> {
             AppButton(
               text: "Say Hello",
               onPressed: () {
-                launch("mailto:contact@ishangavidusha.com");
+                launchUrlString("mailto:contact@ishangavidusha.com");
               },
             ),
             verticalSpace(value: 30),
@@ -54,19 +54,19 @@ class _ContactSecState extends State<ContactSec> {
                 IconsButton(
                   icon: FontAwesomeIcons.github,
                   onTap: () {
-                    launch("https://github.com/ishangavidusha");
+                    launchUrlString("https://github.com/ishangavidusha");
                   },
                 ),
                 IconsButton(
                   icon: FontAwesomeIcons.instagram,
                   onTap: () {
-                    launch("https://www.instagram.com/ishanga_vidusha");
+                    launchUrlString("https://www.instagram.com/ishanga_vidusha");
                   },
                 ),
                 IconsButton(
                   icon: FontAwesomeIcons.twitter,
                   onTap: () {
-                    launch("https://twitter.com/ishangavidusha");
+                    launchUrlString("https://twitter.com/ishangavidusha");
                   },
                 ),
               ],

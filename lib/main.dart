@@ -23,10 +23,10 @@ class Portfolio extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _PortfolioState createState() => _PortfolioState();
+  PortfolioState createState() => PortfolioState();
 }
 
-class _PortfolioState extends State<Portfolio> {
+class PortfolioState extends State<Portfolio> {
   late AppService _appService;
   late AppRouter _appRouter;
   late AppTheme _appTheme;
@@ -65,8 +65,7 @@ class _PortfolioState extends State<Portfolio> {
             title: "Ishanga Vidusha",
             darkTheme: context.read<AppTheme>().theme,
             themeMode: ThemeMode.dark,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
+            routerConfig: router,
           );
         }
       ),

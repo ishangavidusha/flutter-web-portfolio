@@ -4,9 +4,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'package:ishangavidusha/utils/widgets/menu_bars.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../services/theme.dart';
 import '../../utils/commons.dart';
@@ -23,10 +23,10 @@ class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   late Animation<double> _homeSecAnimation;
   late Animation<double> _menuBarAnimation;
@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   double homeContentHeight = 0;
 
   bool isDrawerOpen = false;
+  bool showExtraItems = false;
 
   @override
   void initState() {
@@ -46,25 +47,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _menuBarAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
     _homeSecAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _homeSecAnimationController, curve: Curves.easeOutCirc));
     _menuBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _menuBarAnimationController, curve: Curves.easeOutCirc));
-    WidgetsBinding.instance?.addPostFrameCallback((_) => getContentHeight());
-    WidgetsBinding.instance?.addPostFrameCallback((_) => startAnimation());
+    WidgetsBinding.instance.addPostFrameCallback((_) => getContentHeight());
+    WidgetsBinding.instance.addPostFrameCallback((_) => startAnimation());
     super.initState();
   }
 
-  void startAnimation() {
-    _menuBarAnimationController.forward().then((value) => _homeSecAnimationController.forward());
+  void startAnimation() async {
+    await _menuBarAnimationController.forward();
+    await Future.delayed(const Duration(milliseconds: 1000));
+    await _homeSecAnimationController.forward();
+    setState(() {
+      showExtraItems = true;
+    });
   }
 
   @override
   void didUpdateWidget(covariant HomePage oldWidget) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) => getContentHeight());
+    WidgetsBinding.instance.addPostFrameCallback((_) => getContentHeight());
     super.didUpdateWidget(oldWidget);
   }
 
-  void scrollTo(GlobalKey _key) {
+  void scrollTo(GlobalKey key) {
     if (_scrollController.hasClients) {
       double currentOffset = _scrollController.offset;
-      RenderBox? renderBox = _key.currentContext?.findRenderObject() as RenderBox?;
+      RenderBox? renderBox = key.currentContext?.findRenderObject() as RenderBox?;
       Offset position = renderBox?.localToGlobal(Offset(0, currentOffset)) ?? const Offset(0, 0);
       _scrollController.animateTo(position.dy, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
@@ -82,8 +88,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     });
   }
 
-  double getRenderBoxHeight(GlobalKey _key) {
-    RenderBox? renderBox = _key.currentContext?.findRenderObject() as RenderBox?;
+  double getRenderBoxHeight(GlobalKey key) {
+    RenderBox? renderBox = key.currentContext?.findRenderObject() as RenderBox?;
     return renderBox?.size.height ?? 0;
   }
 
@@ -169,7 +175,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       },
       body: NotificationListener(
         onNotification: (SizeChangedLayoutNotification notification) {
-          WidgetsBinding.instance?.addPostFrameCallback((_) => getContentHeight());
+          WidgetsBinding.instance.addPostFrameCallback((_) => getContentHeight());
           return true;
         },
         child: SizeChangedLayoutNotifier(
@@ -226,14 +232,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             ClickableText(
                               text: "Designed by Brittany Chiang",
                               onTap: () {
-                                launch("https://brittanychiang.com/");
+                                launchUrlString("https://brittanychiang.com/");
                               },
                             ),
                             verticalSpace(),
                             ClickableText(
                               text: "Build with Flutter by Ishanga Vidusha",
                               onTap: () {
-                                launch("https://github.com/ishangavidusha/flutter-web-portfolio");
+                                launchUrlString("https://github.com/ishangavidusha/flutter-web-portfolio");
                               },
                             ),
                           ],
@@ -246,17 +252,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Positioned(
                 top: 0,
                 width: devWidth(context),
-                child: SlideTransition(
-                  position: _menuBarAnimation.drive(Tween<Offset>(begin: const Offset(0, -2.0), end: Offset.zero)),
-                  child: FadeTransition(
-                    opacity: _menuBarAnimation,
-                    child: MenuBar(
-                      items: getMenuButtons(context, appTheme),
-                      controller: _scrollController,
-                      onClickLogo: () {
-                        scrollTo(homePositionKey);
-                      },
-                    ),
+                child: FadeTransition(
+                  opacity: _menuBarAnimation,
+                  child: MenuBar(
+                    items: getMenuButtons(context, appTheme),
+                    controller: _scrollController,
+                    menuAnimationController: _menuBarAnimationController,
+                    onClickLogo: () {
+                      scrollTo(homePositionKey);
+                    },
                   ),
                 ),
               ),
@@ -264,62 +268,70 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 left: 0,
                 bottom: 0,
                 width: 120,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconsButton(
-                      icon: FontAwesomeIcons.github,
-                      onTap: () {
-                        launch("https://github.com/ishangavidusha");
-                      },
-                    ),
-                    IconsButton(
-                      icon: FontAwesomeIcons.instagram,
-                      onTap: () {
-                        launch("https://www.instagram.com/ishanga_vidusha");
-                      },
-                    ),
-                    IconsButton(
-                      icon: FontAwesomeIcons.twitter,
-                      onTap: () {
-                        launch("https://twitter.com/ishangavidusha");
-                      },
-                    ),
-                    verticalSpace(value: 20),
-                    Container(
-                      width: 1,
-                      height: devHeight(context) * 0.15,
-                      decoration: BoxDecoration(
-                        color: appTheme.lightOne.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(8),
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 200),
+                  opacity: showExtraItems ? 1 : 0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconsButton(
+                        icon: FontAwesomeIcons.github,
+                        onTap: () {
+                          launchUrlString("https://github.com/ishangavidusha");
+                        },
                       ),
-                    )
-                  ]
+                      IconsButton(
+                        icon: FontAwesomeIcons.instagram,
+                        onTap: () {
+                          launchUrlString("https://www.instagram.com/ishanga_vidusha");
+                        },
+                      ),
+                      IconsButton(
+                        icon: FontAwesomeIcons.twitter,
+                        onTap: () {
+                          launchUrlString("https://twitter.com/ishangavidusha");
+                        },
+                      ),
+                      verticalSpace(value: 20),
+                      Container(
+                        width: 1,
+                        height: devHeight(context) * 0.15,
+                        decoration: BoxDecoration(
+                          color: appTheme.lightOne.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      )
+                    ]
+                  ),
                 ),
               ),
               if (devWidth(context) > ScreenSize.desktop.maxWidth()) Positioned(
                 right: 0,
                 bottom: 0,
                 width: 120,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconsButton(
-                      text: "ishangavidusha@gmail.com",
-                      onTap: () {},
-                    ),
-                    verticalSpace(value: 20),
-                    Container(
-                      width: 1,
-                      height: devHeight(context) * 0.15,
-                      decoration: BoxDecoration(
-                        color: appTheme.lightOne.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(8),
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 200),
+                  opacity: showExtraItems ? 1 : 0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconsButton(
+                        text: "ishangavidusha@gmail.com",
+                        onTap: () {},
                       ),
-                    )
-                  ]
+                      verticalSpace(value: 20),
+                      Container(
+                        width: 1,
+                        height: devHeight(context) * 0.15,
+                        decoration: BoxDecoration(
+                          color: appTheme.lightOne.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      )
+                    ]
+                  ),
                 ),
               ),
             ],

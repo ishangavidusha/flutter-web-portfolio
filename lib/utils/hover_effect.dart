@@ -85,8 +85,8 @@ class HoverCardState extends State<HoverCard> with SingleTickerProviderStateMixi
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (_, dimens) {
-        final size = Size(dimens.maxWidth, dimens.maxHeight);
+      builder: (_, constraints) {
+        final size = Size(constraints.maxWidth, constraints.maxHeight);
         double percentageX = (localX / size.width) * 100;
         double percentageY = (localY / size.height) * 100;
         return Transform(
@@ -153,14 +153,14 @@ class HoverCardState extends State<HoverCard> with SingleTickerProviderStateMixi
                 },
                 onHover: (details) {
                   RenderBox box = context.findRenderObject() as RenderBox;
-                  final _offset = box.globalToLocal(details.localPosition);
+                  final offset = box.globalToLocal(details.localPosition);
                   if (mounted) {
                     setState(() {
                       defaultPosition = false;
-                      if (_offset.dx > 0 && _offset.dy > 0) {
-                        if (_offset.dx < size.width * 1.5 && _offset.dy > 0) {
-                          localX = _offset.dx;
-                          localY = _offset.dy;
+                      if (offset.dx > 0 && offset.dy > 0) {
+                        if (offset.dx < size.width * 1.5 && offset.dy > 0) {
+                          localX = offset.dx;
+                          localY = offset.dy;
                         }
                       }
                     });

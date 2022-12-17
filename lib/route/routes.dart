@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../services/app.dart';
@@ -16,23 +17,24 @@ class AppRouter {
 
   late final GoRouter _goRouter = GoRouter(
     refreshListenable: appService,
-    initialLocation: APP_PAGES.home.toPath(),
+    initialLocation: Pages.home.toPath(),
     routes: [
       GoRoute(
-        path: APP_PAGES.home.toPath(),
-        name: APP_PAGES.home.toPathName(),
+        path: Pages.home.toPath(),
+        name: Pages.home.toPathName(),
         pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const HomePage()),
       ),
       GoRoute(
-        path: APP_PAGES.splash.toPath(),
-        name: APP_PAGES.splash.toPathName(),
+        path: Pages.splash.toPath(),
+        name: Pages.splash.toPathName(),
         pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const SplashPage()),
       ),
     ],
     errorBuilder: (context, state) => NotFoundPage(state: state),
-    redirect: (GoRouterState state) {
-      final homeLocation = state.namedLocation(APP_PAGES.home.toPathName());
-      final splashLocation = state.namedLocation(APP_PAGES.splash.toPathName());
+    redirect: (BuildContext context, GoRouterState state) {
+      final routerConfiguration = router.routeInformationParser.configuration;
+      final homeLocation = routerConfiguration.namedLocation(Pages.home.toPathName());
+      final splashLocation = routerConfiguration.namedLocation(Pages.splash.toPathName());
 
       final isInitialized = appService.initialized;
 

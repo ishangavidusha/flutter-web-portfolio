@@ -8,10 +8,10 @@ class SplashPage extends StatefulWidget {
   const SplashPage({ Key? key }) : super(key: key);
 
   @override
-  _SplashPageState createState() => _SplashPageState();
+  SplashPageState createState() => SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
+class SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late AppService _appService;
   late AnimationController _entryAnimationController;
   late Animation<double> _entryAnimation;
@@ -21,7 +21,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _appService = Provider.of<AppService>(context, listen: false);
     _entryAnimationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     _entryAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _entryAnimationController, curve: Curves.easeIn));
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) => startAnimations());
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) => startAnimations());
     super.initState();
   }
 
@@ -51,7 +51,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             child: Center(
               child: FadeTransition(
                 opacity: _entryAnimation,
-                child: AppLogo(onTap: () {  }),
+                child: Hero(
+                  tag: 'appLogo',
+                  child: AppLogo(onTap: () {  }),
+                ),
               ),
             ),
           ),

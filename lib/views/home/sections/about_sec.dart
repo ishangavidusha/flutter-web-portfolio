@@ -13,10 +13,10 @@ class AboutSec extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AboutSecState createState() => _AboutSecState();
+  AboutSecState createState() => AboutSecState();
 }
 
-class _AboutSecState extends State<AboutSec> {
+class AboutSecState extends State<AboutSec> {
   @override
   Widget build(BuildContext context) {
     ScreenSize screenSize = getScreenSize(context);
